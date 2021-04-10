@@ -22,7 +22,7 @@ Here this is being implemented using JAVA and contains 4 java files.
   - The first team to bat will be batting until all-out or overs finish
   - The winning team will be the one with the highest score of the two
 
-### Minimal requirements:
+### Minimal requirements of the task:
   - Play the game through the command line
   - Naming the two teams through the command line
   - No need to explicitly name players (hint: naming can be “player 1”, “player 2” ... )
