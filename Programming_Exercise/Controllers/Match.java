@@ -45,7 +45,7 @@ public class Match {
         
         // Toss
         Random random = new Random();
-        int toss = random.nextInt(1);
+        int toss = random.nextInt(2);
 
         // if toss == 0 -> toss won --> will bat first
         Team firstBatTeam = team_List.get(toss);
@@ -106,7 +106,7 @@ public class Match {
             /**
              * Runs can be 0,1,2,3,4,6 Using 5 - caught, 7 - boweld (modes of getting out)
              */
-            int run_value = randomGen.nextInt(7);
+            int run_value = randomGen.nextInt(8);
 
             if (run_value == 5 || run_value == 7) {
                 player.setIsPlaying(false);
