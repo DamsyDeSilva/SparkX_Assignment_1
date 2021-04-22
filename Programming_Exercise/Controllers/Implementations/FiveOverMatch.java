@@ -20,6 +20,10 @@ public class FiveOverMatch extends Match {
     public final static int NO_OF_BALLS = 3;
     public final static int TOT_NO_OF_BALLS = NO_OF_OVERS * NO_OF_BALLS;
 
+    public final static String NOTOUT = "NotOut"; 
+    public final static String CAUGHT_OUT = "Caught"; 
+    public final static String BOWLED_OUT = "Bowled"; 
+
     @Override
     protected int playInning(Team currentTeam, int targetScore) {
 
@@ -28,7 +32,7 @@ public class FiveOverMatch extends Match {
 
         Player player = currentTeam.getCurrentPlayer();
         player.setIsPlaying(true);
-        player.setWicketType("NotOut");
+        player.setWicketType(NOTOUT);
 
         Scanner scanner = new Scanner(System.in);
 
@@ -48,7 +52,7 @@ public class FiveOverMatch extends Match {
 
             if (run_value == 5 || run_value == 7) {
                 player.setIsPlaying(false);
-                String wicketType = (run_value == 5) ? "caught" : "bowled";
+                String wicketType = (run_value == 5) ? CAUGHT_OUT : BOWLED_OUT;
                 System.out.println("Player " + player.getId() + " got out by " + wicketType);
                 player.setWicketType(wicketType);
                 player = currentTeam.updateCurrentPlayer();
