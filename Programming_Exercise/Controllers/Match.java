@@ -13,15 +13,15 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Match {
+public abstract class Match {
+    
     public final static int NO_OF_TEAMS = 2;
-    public final static int NO_OF_OVERS = 5;
-    public final static int NO_OF_BALLS = 3;
     public final static int NO_OF_PLAYERS = 6;
-    public final static int TOT_NO_OF_BALLS = NO_OF_OVERS * NO_OF_BALLS;
 
     public static int targetScore = -1;
     public static int chasedScore = -1;
+
+    protected abstract int playInning(Team currentTeam, int targetScore);
 
     // get team names and set toss and start the game
     public void startGame() {
@@ -43,10 +43,10 @@ public class Match {
         System.out.println("Team " + firstBatTeam.getTeamName() + " won the toss and will bat first");
 
         // play the innings
-        targetScore = playInning(firstBatTeam);
+        targetScore = playInning(firstBatTeam, targetScore);
         System.out.println("\n---- Team " + firstBatTeam.getTeamName() + " scored " + targetScore + " runs and Team "
                 + secondBatTeam.getTeamName() + " need " + (targetScore + 1) + " runs to win ---");
-        chasedScore = playInning(secondBatTeam);
+        chasedScore = playInning(secondBatTeam, targetScore);
 
         // after both innings
         if (targetScore > chasedScore) {
@@ -83,64 +83,6 @@ public class Match {
             Team team = new Team(teamName, NO_OF_PLAYERS);
             team_List.add(team);
         }
-    }
-
-    // return the total score played from the current team
-    private int playInning(Team currentTeam) {
-
-        System.out.println("-------- Team " + currentTeam.getTeamName() + " started to bat --------");
-        Random randomGen = new Random();
-
-        Player player = currentTeam.getCurrentPlayer();
-        player.setIsPlaying(true);
-        player.setWicketType("NotOut");
-
-        Scanner scanner = new Scanner(System.in);
-
-        for (int i = 0; i < TOT_NO_OF_BALLS; i++) {
-            System.out.println("Press p to play  : ");
-            String input = scanner.nextLine();
-
-            while (input == null || !input.equalsIgnoreCase("p")) {
-                System.out.println("Invalid Input -- Press p to play : ");
-                input = scanner.nextLine();
-            }
-
-            /**
-             * Runs can be 0,1,2,3,4,6 Using 5 - caught, 7 - boweld (modes of getting out)
-             */
-            int run_value = randomGen.nextInt(8);
-
-            if (run_value == 5 || run_value == 7) {
-                player.setIsPlaying(false);
-                String wicketType = (run_value == 5) ? "caught" : "bowled";
-                System.out.println("Player " + player.getId() + " got out by " + wicketType);
-                player.setWicketType(wicketType);
-                player = currentTeam.updateCurrentPlayer();
-
-                if (player == null) {
-                    System.out.println("Team " + currentTeam.getTeamName() + " All out !!!");
-                    break;
-                }
-
-                System.out.println("Player " + player.getId() + " is now playing");
-                run_value = 0; // when player got out run_value should not be added
-
-            } else {
-                System.out.println(run_value + " runs scored");
-                player.updateScore(run_value);
-            }
-
-            currentTeam.updateScore(run_value);
-            currentTeam.updateOversPlayed(i + 1);
-            System.out.println("   Score : " + currentTeam.getTeamScore() + " \n" + "   Overs : "
-                    + currentTeam.getOversPlayed() + "\n" + "   Wickets : " + currentTeam.getNumOfWickets());
-
-            if (targetScore > -1 && currentTeam.getTeamScore() > targetScore) {
-                break;
-            }
-        }
-        return currentTeam.getTeamScore();
     }
 
     private void displayScoreboard(Team team) {

@@ -8,7 +8,6 @@ package Models;
  *      This java file contains the class structure for creating the team instances
  */
 
-import Controllers.*;
 import java.util.ArrayList;
 
 
@@ -83,8 +82,8 @@ public class Team {
         return newPlayer;
     }
 
-    public void updateOversPlayed(int ballNumber){
-        this.oversPlayed =  "" + (ballNumber / Match.NO_OF_BALLS) + "." + (ballNumber % Match.NO_OF_BALLS) + " overs" ;
+    public void updateOversPlayed(int ballNumber, int ballsPerOver){
+        this.oversPlayed =  "" + (ballNumber / ballsPerOver) + "." + (ballNumber % ballsPerOver) + " overs" ;
     }
 
     public String getOversPlayed(){

@@ -7,10 +7,11 @@
  */
 
 import Controllers.*;
+import Controllers.Implementations.FiveOverMatch;
 
 public class CricketGame {
     public static void main(String[] args) {
-        Match match = new Match();
+        Match match = new FiveOverMatch();
         match.startGame();        
     }
 }
