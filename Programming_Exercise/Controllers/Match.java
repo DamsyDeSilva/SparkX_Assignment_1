@@ -5,7 +5,7 @@ package Controllers;
  *  Author  :   Damsy De Silva
  *  Date    :   31/03/2021
  *  Description :      
- *      This java file contains class structure for creating the Player instances
+ *      This java file contains class structure for Match controller
  */
 
 import Models.*;
