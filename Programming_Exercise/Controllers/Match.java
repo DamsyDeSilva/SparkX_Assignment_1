@@ -26,22 +26,8 @@ public class Match {
     // get team names and set toss and start the game
     public void startGame() {
 
-        Scanner scanner = new Scanner(System.in);
-
         ArrayList<Team> team_List = new ArrayList<Team>();
-
-        // creating teams
-        for (int i = 0; i < NO_OF_TEAMS; i++) {
-            System.out.println("Insert Team Name " + (i + 1) + " : ");
-            String teamName = scanner.nextLine();
-
-            while (teamName == null || teamName.isEmpty()) {
-                System.out.println("Insert a valid Team Name");
-                teamName = scanner.nextLine();
-            }
-            Team team = new Team(teamName, NO_OF_PLAYERS);
-            team_List.add(team);
-        }
+        createTeams(team_List);
         
         // Toss
         Random random = new Random();
@@ -80,6 +66,23 @@ public class Match {
         displayScoreboard(secondBatTeam);
         System.out.println("\n--------------------------------------");
 
+    }
+
+    private void createTeams(ArrayList<Team> team_List){
+
+        Scanner scanner = new Scanner(System.in);
+        
+        for (int i = 0; i < NO_OF_TEAMS; i++) {
+            System.out.println("Insert Team Name " + (i + 1) + " : ");
+            String teamName = scanner.nextLine();
+
+            while (teamName == null || teamName.isEmpty()) {
+                System.out.println("Insert a valid Team Name");
+                teamName = scanner.nextLine();
+            }
+            Team team = new Team(teamName, NO_OF_PLAYERS);
+            team_List.add(team);
+        }
     }
 
     // return the total score played from the current team
