@@ -1,3 +1,5 @@
+package Models;
+
 /**
  *  Program :   Model and Implement a cricket game
  *  Author  :   Damsy De Silva

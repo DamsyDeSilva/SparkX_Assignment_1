@@ -6,6 +6,7 @@
  *      This java file contains the main program
  */
 
+import Controllers.*;
 
 public class CricketGame {
     public static void main(String[] args) {

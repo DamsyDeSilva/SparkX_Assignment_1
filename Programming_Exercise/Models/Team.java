@@ -1,3 +1,5 @@
+package Models;
+
 /**
  *  Program :   Model and Implement a cricket game
  *  Author  :   Damsy De Silva
@@ -6,6 +8,7 @@
  *      This java file contains the class structure for creating the team instances
  */
 
+import Controllers.*;
 import java.util.ArrayList;
 
 
@@ -20,7 +23,7 @@ public class Team {
     private int currentPlayer;
 
     // class constructor
-    Team(String name, int numOfPlayers){
+    public Team(String name, int numOfPlayers){
         this.name = name;
         this.teamScore = 0;
         this.numOfWickets = 0;
